@@ -143,6 +143,17 @@ describe "Initiative", type: :system do
       end
     end
 
+    context "when sharing initiative" do
+      it "displays social links in view-side" do
+        within ".view-side" do
+          within ".social-share-button" do
+            expect(page).to have_selector("a[title=\"Share to Twitter\"]", count: 1)
+            expect(page).to have_selector("a[title=\"Share to Facebook\"]", count: 1)
+          end
+        end
+      end
+    end
+
     it_behaves_like "has attachments"
   end
 end
