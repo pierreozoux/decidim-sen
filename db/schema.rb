@@ -727,6 +727,7 @@ ActiveRecord::Schema.define(version: 2021_07_15_081756) do
     t.boolean "custom_signature_end_date_enabled", default: false, null: false
     t.boolean "area_enabled", default: false, null: false
     t.boolean "attachments_enabled", default: false, null: false
+    t.integer "signature_type", default: 0, null: false
     t.date "global_signature_end_date"
     t.index ["decidim_organization_id"], name: "index_decidim_initiative_types_on_decidim_organization_id"
   end
