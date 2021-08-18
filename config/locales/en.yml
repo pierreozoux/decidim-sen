@@ -21,6 +21,14 @@ en:
         full_address: Votre adresse postale
         number_and_street: Numéro et libellé de la voie
         postal_code: Code postal
+    errors:
+      models:
+        initiative:
+          attributes:
+            add_documents:
+              file: one or more files seems to not have the right format, format accepted are PDF
+              needs_to_be_reattached: needs to be reattached
+              size: One or more files seems to exceed the maximal size allowed (10 Mo)
     models:
       decidim/attachment_created_event: Pièce jointe
   carrierwave:
@@ -246,7 +254,7 @@ en:
           back: Back
           individual_help_text: This kind of citizen initiative requires a Promoting Commission consisting of at least 2 people (attestors). You must share the following link with the other people that are part of this initiative. When your contacts receive this link they will have to follow the indicated steps.
       form:
-        add_attachments: Ajouter un document
+        add_attachments: Add document
         attachment_legend: Document
         delete_attachment: Supprimer le document
       initiative_signatures:
