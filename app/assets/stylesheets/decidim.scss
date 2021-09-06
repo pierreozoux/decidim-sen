@@ -74,7 +74,7 @@ $navbar-background: darken( $title-bar-background, 10%);
 }
 
 .card__title{
-  color: #2B3951;
+  color: $primary;
 }
 
 .card-data__item {
@@ -82,11 +82,11 @@ $navbar-background: darken( $title-bar-background, 10%);
 }
 
 .card__support .card__button {
-  background-color: #2B3951;
+  background-color: $primary;
 }
 
 .title-action__action.button.small {
-  background-color: #2B3951;
+  background-color: $primary;
   color: white;
   max-height: 100px;
   height: 40px;
