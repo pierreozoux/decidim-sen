@@ -446,3 +446,8 @@ main.anonymous {
 .callout > form > :last-child {
   margin-bottom: 0;
 }
+
+.home-section img:first-of-type {
+  display: block;
+  margin: 0 auto;
+}
