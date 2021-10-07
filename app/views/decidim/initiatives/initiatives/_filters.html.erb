@@ -1,47 +1,35 @@
-<%= initiatives_filter_form_for filter do |form| %>
-  <div class="filters__section">
-    <div class="filters__search">
-      <div class="input-group">
-        <%= form.search_field :search_text, label: false, class: "input-group-field", placeholder: t(".search") %>
-        <div class="input-group-button">
-          <button type="submit" class="button button--muted">
-            <%= icon "magnifying-glass", aria_label: t(".search") %>
-          </button>
+<% cache [filter, current_user] do %>
+  <%= initiatives_filter_form_for filter do |form| %>
+    <div class="filters__section">
+      <div class="filters__search">
+        <div class="input-group">
+          <%= form.search_field :search_text, label: false, class: "input-group-field", placeholder: t(".search"), title: t(".search") %>
+          <div class="input-group-button">
+            <button type="submit" class="button button--muted" aria-label="<%= t(".search") %>">
+              <%= icon "magnifying-glass", aria_label: t(".search"), role: "img" %>
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    <% if current_user && current_user.identities.collect(&:provider).include?("france_connect_profile") %>
+      <%= form.collection_radio_buttons :author,
+                                        [["any", t(".any")], ["myself", t(".myself")]],
+                                        :first,
+                                        :last,
+                                        legend_title: t(".author") %>
 
-  <%= form.collection_radio_buttons :state,
-                                    [["open", t(".open")], ["closed", t(".closed")]],
-                                    :first,
-                                    :last,
-                                    legend_title: t(".state") %>
+      <%= javascript_include_tag "decidim/initiatives/sort_initiatives" %>
+    <% else %>
+      <%= form.hidden_field :author, value: "any" %>
+    <% end %>
 
-  <% if current_user && current_user.email.present? %>
-    <%= form.collection_radio_buttons :author,
-                                    [["any", t(".any")], ["myself", t(".myself")]],
-                                    :first,
-                                    :last,
-                                    legend_title: t(".author") %>
+    <%= form.check_boxes_tree :state, filter_states_values, legend_title: t(".state") %>
+
+    <% unless single_initiative_type? %>
+      <%= form.check_boxes_tree :type_id, filter_types_values, legend_title: t(".type") %>
+    <% end %>
+
+    <%= hidden_field_tag :order, order, id: "order_filter", class: "order_filter" %>
   <% end %>
-
-  <div class="filters__section">
-    <fieldset>
-      <legend><h6 class="heading6"><%= t ".type" %></h6></legend>
-      <%= form.initiative_types_select :type,
-                                       Decidim::InitiativesType.where(organization: current_organization),
-                                       legend_title: t(".type"),
-                                       label: false,
-                                       prompt: t(".type_prompt"),
-                                       remote_path: initiative_types_search_path,
-                                       multiple: true %>
-    </fieldset>
-  </div>
-
-  <div class="initiatives__filters__scope">
-    <%= scopes_picker_field form, :scope_id, root: nil %>
-  </div>
-
-  <%= hidden_field_tag :order, order, id: nil, class: "order_filter" %>
 <% end %>

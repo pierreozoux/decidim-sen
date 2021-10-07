@@ -4,28 +4,13 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-gem "decidim", git: "https://github.com/OpenSourcePolitics/decidim.git", branch: "alt/petition"
-# gem "decidim-consultations", git: "https://github.com/OpenSourcePolitics/decidim.git", branch: "alt/petition"
-gem "decidim-initiatives", git: "https://github.com/OpenSourcePolitics/decidim.git", branch: "alt/petition"
-
-# gem "decidim", path: "../decidim"
-# gem "decidim-consultations", path: "../decidim"
-# gem "decidim-initiatives", path: "../decidim"
+gem "decidim", git: "https://github.com/OpenSourcePolitics/decidim.git", branch: "alt/petition_merge"
+gem "decidim-initiatives", git: "https://github.com/OpenSourcePolitics/decidim.git", branch: "alt/petition_merge"
 
 gem "decidim-term_customizer", git: "https://github.com/OpenSourcePolitics/decidim-module-term_customizer.git", branch: "0.dev"
 
-# gem "omniauth-decidim", git: "https://github.com/OpenSourcePolitics/decidim.git"
-# gem "decidim-omniauth_extras", git: "https://github.com/OpenSourcePolitics/decidim.git"
-# gem "decidim-initiatives_extras", git: "https://github.com/OpenSourcePolitics/decidim.git"
-
-# gem "omniauth-decidim", path: "../omniauth-decidim"
-# gem "decidim-omniauth_extras", path: "../decidim-module-omniauth_extras"
-# gem "decidim-initiatives_extras", path: "../decidim-module-initiatives_extras"
-
-# gem "decidim-blazer", path: "../decidim-module-blazer"
-
 gem "bootsnap"
-gem "puma"
+gem "puma", ">= 4.3"
 gem "uglifier"
 
 gem "faker", "~> 1.9"
@@ -34,23 +19,21 @@ gem "faker", "~> 1.9"
 gem "wicked_pdf"
 gem "wkhtmltopdf-binary"
 
-gem 'activerecord-session_store'
+gem "activerecord-session_store"
 
-gem "omniauth-oauth2", ">= 1.4.0", "< 2.0"
 gem "omniauth_openid_connect", "0.3.1"
-gem "omniauth-saml", "~> 1.10"
 
-gem "rubyzip", require: 'zip'
 gem "ruby-progressbar"
+gem "rubyzip", require: "zip"
 gem "sentry-raven"
 
 gem "dotenv-rails"
+gem "rails", "5.2.4.4"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
 
-  gem "decidim-dev", git: "https://github.com/OpenSourcePolitics/decidim.git", branch: "alt/petition"
-  # gem "decidim-dev", path: "../decidim"
+  gem "decidim-dev", git: "https://github.com/OpenSourcePolitics/decidim.git", branch: "alt/petition_merge"
 end
 
 group :development do
@@ -62,14 +45,14 @@ group :development do
 end
 
 group :production do
-  gem "passenger"
-  gem "fog-aws"
-  gem 'aws-sdk-s3'
+  gem "aws-sdk-s3"
   gem "dalli"
-  gem "sendgrid-ruby"
-  gem "newrelic_rpm"
+  gem "dalli-elasticache"
+  gem "fog-aws"
   gem "lograge"
+  gem "newrelic_rpm"
+  gem "passenger"
+  gem "sendgrid-ruby"
   gem "sidekiq"
   gem "sidekiq-scheduler"
-  gem "dalli-elasticache"
 end
