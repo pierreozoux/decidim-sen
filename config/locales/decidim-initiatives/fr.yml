@@ -14,7 +14,7 @@ fr:
         offline_votes: Votes en présentiel
         offline_votes_for_scope: Signatures en présentiel pour %{scope}
         scope_id: Secteur
-        signature_end_date: Fin de la période de collecte des signatures
+        signature_end_date: Fin de la période de collecte des signatures (penser à changer le statut de la pétition avec le bouton adapté, seuil atteint, seuil non atteint)
         signature_start_date: Début de la période de collecte des signatures
         signature_type: Type de collecte des signatures
         signature_type_values:
@@ -559,7 +559,7 @@ fr:
             published: Cette pétition est en cours de signature
             rejected: Cette pétition n'a pas atteint le seuil de signatures requis
             validating: Cette pétition est en cours d'évaluation
-          initiative_rejected_reason: Cette pétition est caduque (elle n'a pas atteint le seuil de signatures requis au terme du délai ou le compte de son auteur a été supprimé).
+          initiative_rejected_reason: Cette pétition est fermée aux signatures.
         show:
           any_vote_method: Cette pétition recueille des signatures en ligne ainsi
             qu'en présentiel.
