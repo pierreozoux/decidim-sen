@@ -67,8 +67,8 @@ fr:
         initiative:
           attributes:
             attachment:
-              file: Une ou plusieurs pièces-jointes ne semblent pas avoir le bon format, le format de documents accepté est .pdf.
-              needs_to_be_reattached: Attention ! Réessayez d'ajouter vos fichiers .pdf avant d'enregistrer votre pétition.
+              file: Un ou plusieurs fichiers ne semblent pas avoir le bon format. Seuls les documents au format PDF sont acceptés.
+              needs_to_be_reattached: Veuillez téléverser à nouveau l'ensemble de vos fichiers PDF avant d'enregistrer votre pétition.
               title: Le titre de la pièce-jointe doit être rempli.
               size: Au moins une de vos pièces-jointes dépasse la poids maximal de 10 Mo.
   activerecord:
@@ -164,7 +164,7 @@ fr:
           notification_title: La date de fin de recueil des signatures pour la pétition <a href="%{resource_path}">%{resource_title}</a> a été prolongée.
         milestone_completed:
           affected_user:
-            email_intro: Votre pétition %{resource_title} a atteint %{percentage}% du seuil de signatures !
+            email_intro: Votre pétition %{resource_title} a atteint %{percentage}% du seuil de signatures ! Pour recueillir plus de signatures, pensez à la partager via les réseaux sociaux !
             email_outro: Vous avez reçu cette notification car vous êtes l'auteur de la pétition %{resource_title}.
             email_subject: Nouvelle étape franchie !
             notification_title: Votre pétition <a href="%{resource_path}">%{resource_title}</a> a atteint %{percentage}% du seuil de signatures !
@@ -593,7 +593,7 @@ fr:
         initiative_link:
           check_initiative_details: Vous pouvez y accéder
           here: en suivant ce lien
-        more_information: "Vous pouvez la modifier et éventuellement ajouter des pièces jointes. Pour cela, accéder au menu \"Tableau de bord\" de votre compte auteur, cliquer sur \"pétitions\" dans le menu à gauche et cliquer sur votre pétition. Attention ! Elle n'est pas encore publiée : il vous reste à l'envoyer à la validation technique du Sénat en cliquant sur le bouton « Envoyer à la validation technique » Une fois votre pétition envoyée, le Sénat s'engage à vous répondre dans un délai de quinze jours et, si votre pétition est recevable, la publier et l’ouvrir au recueil de signatures."
+        more_information: "Vous pouvez la modifier en accédant au menu \"Mes pétitions\" de votre compte auteur en haut à droite et en cliquant sur votre pétition. Attention ! Elle n'est pas encore publiée : il vous reste à l'envoyer à la validation technique du Sénat en cliquant sur le bouton « Envoyer à la validation technique ». Une fois votre pétition envoyée, le Sénat s'engage à vous répondre dans un délai de quinze jours lorsqu'il siège et, si votre pétition est recevable, la publier et l’ouvrir au recueil de signatures."
         progress_report_body_for: La pétition %{title} a atteint %{percentage}% des signatures requises.
         progress_report_for: "Résumé de la pétition : %{title}"
         promotal_committee_help: Rappelez-vous que vous devez inviter au moins %{member_count}
