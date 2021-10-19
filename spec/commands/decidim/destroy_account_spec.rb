@@ -98,6 +98,24 @@ module Decidim
         end
 
         context "when initiative has not reached the signature threshold" do
+          context "when initiative has created state" do
+            let!(:initiative) { create(:initiative, :created, scoped_type: scoped_type, organization: scoped_type.type.organization) }
+
+            it "is discarded" do
+              command.call
+              expect(initiative.reload.state).to eq("discarded")
+            end
+          end
+
+          context "when initiative has technical validation" do
+            let!(:initiative) { create(:initiative, :validating, scoped_type: scoped_type, organization: scoped_type.type.organization) }
+
+            it "is discarded" do
+              command.call
+              expect(initiative.reload.state).to eq("discarded")
+            end
+          end
+
           it "Sets the initiative state as rejected" do
             command.call
             expect(initiative.reload.state).to eq("rejected")
