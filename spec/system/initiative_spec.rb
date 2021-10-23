@@ -74,6 +74,26 @@ describe "Initiative", type: :system do
       end
     end
 
+    describe "when answering an initiative" do
+      context "when an initiative is rejected" do
+        let!(:initiative) { create(:initiative, :rejected, organization: organization) }
+
+        it "displays state_badge_css_class rejected callout" do
+          expect(page).to have_css(".initiative-answer")
+          expect(page).to have_content "This initiative has been rejected due to its lack of signatures."
+        end
+      end
+
+      context "when an initiative is open" do
+        let!(:initiative) { create(:initiative, :with_answer, organization: organization) }
+
+        it "displays state_badge_css_class callout with answer state" do
+          expect(page).to have_css(".initiative-answer")
+          expect(page).to have_content("This proposal is published because")
+        end
+      end
+    end
+
     it_behaves_like "has attachments"
   end
 end
