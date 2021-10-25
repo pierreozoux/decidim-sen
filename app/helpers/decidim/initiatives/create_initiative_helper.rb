@@ -12,6 +12,18 @@ module Decidim
         all_signature_type_options
       end
 
+      def send_to_technical_validation?
+        !promotal_committee_required? || unique_committee_member?
+      end
+
+      def back_button_for?(step)
+        return false if defined?(step) && step == :finish
+
+        true
+      rescue StandardError
+        true
+      end
+
       private
 
       def online_signature_type_options

@@ -1,0 +1,24 @@
+---
+en:
+  decidim:
+    admin:
+      filters:
+        decidim_area_id_eq:
+          label: Area
+        state_eq:
+          values:
+            accepted: Accepted
+            classified: Classified
+            created: Created
+            debatted: Debatted
+            discarded: Discarded
+            examinated: Examinated
+            published: Published
+            rejected: Rejected
+            validating: Validating
+    initiatives:
+      initiatives:
+        votes_count:
+          most_popular_initiative: Most popular initiative
+          need_more_votes: Need more signatures
+          goal_not_reached: Goal not reached
