@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: decidim-sen-app-config
+  labels:
+    app: decidim-sen-app
+data:
+  RAILS_ENV: production
