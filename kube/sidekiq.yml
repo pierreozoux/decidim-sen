@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: decidim-sen-sidekiq
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: decidim-sen-sidekiq
+  template:
+    metadata:
+      labels:
+        app: decidim-sen-sidekiq
+    spec:
+      containers:
+      - name: decidim-sen-sidekiq
+        image: rg.fr-par.scw.cloud/decidim-sen/decidim-sen:latest
+        command: ["sidekiq", "-C", "config/sidekiq.yml"]
+        env:
+        - name: REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              name: decidim-sidekiq-secret
+              key: redis_url
