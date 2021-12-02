@@ -1,26 +1,27 @@
 FROM ruby:2.6.5
 
-RUN curl https://deb.nodesource.com/setup_12.x | bash
-RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+# Install NodeJS
+RUN curl https://deb.nodesource.com/setup_15.x | bash
+RUN apt install -y nodejs
 
-RUN apt-get install -y git libicu-dev imagemagick wget nodejs yarn postgresql-client \
-  && apt-get clean
+# Install Yarn
+RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null
+RUN echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt update && apt install -y yarn
 
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
-  && apt-get install -y nodejs \
-  && apt-get clean
+# Decidim dependencies
+RUN apt install -y libicu-dev postgresql-client
 
+# Install npm
 RUN npm install -g npm@6.3.0
+# Install bundler
 RUN gem install bundler:2.2.17
 
-RUN mkdir /app
+# Copy all decidim-app content to /app
+ADD . /app
 WORKDIR /app
-COPY Gemfile Gemfile.lock ./
 
 RUN bundle install
-COPY . .
-RUN rake assets:precompile
 
 # Configure endpoint.
 COPY ./entrypoint.sh /usr/bin/
