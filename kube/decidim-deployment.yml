@@ -28,6 +28,11 @@ spec:
               secretKeyRef:
                 name: decidim-sen-app-secrets
                 key: secret_key_base
+          - name: GEOCODER_LOOKUP_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: decidim-sen-app-secrets
+                key: geocoder_lookup_api_key
           - name: REDIS_URL
             valueFrom:
               secretKeyRef:
