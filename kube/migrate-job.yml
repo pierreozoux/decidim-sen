@@ -7,7 +7,7 @@ spec:
   template:
     spec:
       containers:
-        - name: decidim-sen-migration
+        - name: decidim-sen-migration-job
           image: rg.fr-par.scw.cloud/decidim-sen/decidim-sen:latest
           command: ["bundle",  "exec", "rails", "db:migrate"]
           env:
