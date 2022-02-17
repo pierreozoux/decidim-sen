@@ -22,7 +22,6 @@ ADD . /app
 WORKDIR /app
 
 RUN bundle install
-RUN RAILS_ENV=production bundle exec rake assets:precompile
 
 # Configure endpoint.
 COPY ./entrypoint.sh /usr/bin/
