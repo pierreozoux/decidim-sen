@@ -28,3 +28,13 @@ spec:
             secretKeyRef:
               name: decidim-sidekiq-secret
               key: redis_url
+        - name: RAILS_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: decidim-sen-sidekiq-config
+              key: rails_env
+        - name: SECRET_KEY_BASE
+          valueFrom:
+            secretKeyRef:
+              name: decidim-sen-app-secrets
+              key: secret_key_base
