@@ -29,6 +29,11 @@ spec:
               configMapKeyRef:
                 name: decidim-sen-app-config
                 key: rails_env
+          - name: RAILS_SERVE_STATIC_FILES
+            valueFrom:
+              configMapKeyRef:
+                name: decidim-sen-app-config
+                key: rails_serve_static_files
           - name: DATABASE_URL
             valueFrom:
               secretKeyRef:

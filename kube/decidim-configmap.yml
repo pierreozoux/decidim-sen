@@ -6,3 +6,4 @@ metadata:
     app: decidim-sen-app
 data:
   rails_env: production
+  rails_serve_static_files: "true"
