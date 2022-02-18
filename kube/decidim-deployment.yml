@@ -54,3 +54,23 @@ spec:
               secretKeyRef:
                 name: decidim-sidekiq-secret
                 key: redis_url
+          - name: SCALEWAY_ID
+            valueFrom:
+              secretKeyRef:
+                name: decidim-sen-app-secrets
+                key: scaleway_id
+          - name: SCALEWAY_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: decidim-sen-app-secrets
+                key: scaleway_token
+          - name: SCALEWAY_BUCKET_NAME
+            valueFrom:
+              secretKeyRef:
+                name: decidim-sen-app-secrets
+                key: scaleway_bucket_name
+          - name: ASSET_HOST
+            valueFrom:
+              secretKeyRef:
+                name: decidim-sen-app-secrets   
+                key: asset_host
