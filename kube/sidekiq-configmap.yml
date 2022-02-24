@@ -6,3 +6,4 @@ metadata:
     app: decidim-sen-sidekiq
 data:
   RAILS_ENV: production
+  APP_NAME: "decidim_sen"
