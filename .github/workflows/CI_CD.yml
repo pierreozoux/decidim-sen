@@ -97,7 +97,7 @@ jobs:
   build:
     # TODO: Remove this once we have merged on master
     if: "github.ref == 'refs/heads/feature/kubernetes'"
-    needs: [tests]
+    needs: [tests, lint]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
