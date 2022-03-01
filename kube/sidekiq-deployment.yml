@@ -23,6 +23,7 @@ spec:
                       values:
                         - decidim-sen-sidekiq
                 topologyKey: topology.kubernetes.io/zone
+      terminationGracePeriodSeconds: 60 # put your longest Job time here plus security time.
       containers:
       - name: decidim-sen-sidekiq
         image: rg.fr-par.scw.cloud/decidim-sen/decidim-sen:latest
@@ -42,18 +43,17 @@ spec:
             port: 7433
           initialDelaySeconds: 60 # app specific. Time your sidekiq takes to start processing.
           timeoutSeconds: 5 # can be much less
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 7433
-            initialDelaySeconds: 60 # app specific
-            timeoutSeconds: 5 # can be much less
-          lifecycle:
-            preStop:
-              exec:
-                # SIGTERM triggers a quick exit; gracefully terminate instead
-                command: [ 'kube/sidekiq_quiet.sh' ]
-      terminationGracePeriodSeconds: 60 # put your longest Job time here plus security time.
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 7433
+          initialDelaySeconds: 60 # app specific
+          timeoutSeconds: 5 # can be much less
+        lifecycle:
+          preStop:
+            exec:
+              # SIGTERM triggers a quick exit; gracefully terminate instead
+              command: [ 'kube/sidekiq_quiet.sh' ]
         envFrom:
           - configMapRef:
               name: decidim-sen-sidekiq-config
