@@ -20,7 +20,7 @@ SidekiqAlive.setup do |config|
   # Can also be set with the environment variable SIDEKIQ_ALIVE_PATH.
   # default: '/'
   #
-  #   config.path = '/'
+  config.path = "/sidekiq_alive"
 
   # ==> Custom Liveness Probe
   # Extra check to decide if restart the pod or not for example connection to DB.

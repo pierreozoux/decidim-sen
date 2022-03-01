@@ -126,4 +126,10 @@ Rails.application.configure do
       "Expires" => 1.year.from_now.to_formatted_s(:rfc822).to_s
     }
   end
+
+  config.ssl_options = {
+    redirect: {
+      exclude: ->(request) { /health_check|sidekiq_alive/.match?(request.path) }
+    }
+  }
 end
