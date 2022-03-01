@@ -9,9 +9,6 @@ spec:
     name: decidim-sen-deployment
   minReplicas: 6
   maxReplicas: 24
-  behavior:
-    scaleUp:
-      stabilizationWindowSeconds: 30
   metrics:
   - type: Resource
     resource:

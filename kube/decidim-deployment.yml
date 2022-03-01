@@ -30,8 +30,9 @@ spec:
           httpGet:
             path: /health_check
             port: 3000
-          failureThreshold: 1
+          failureThreshold: 3
           periodSeconds: 10
+          timeoutSeconds: 30
         startupProbe:
           httpGet:
             path: /health_check
