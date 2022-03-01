@@ -39,13 +39,13 @@ spec:
           - containerPort: 7433
         livenessProbe:
           httpGet:
-            path: /
+            path: /sidekiq_alive
             port: 7433
           initialDelaySeconds: 60 # app specific. Time your sidekiq takes to start processing.
           timeoutSeconds: 5 # can be much less
         readinessProbe:
           httpGet:
-            path: /
+            path: /sidekiq_alive
             port: 7433
           initialDelaySeconds: 60 # app specific
           timeoutSeconds: 5 # can be much less
