@@ -54,6 +54,11 @@ spec:
             exec:
               # SIGTERM triggers a quick exit; gracefully terminate instead
               command: [ 'kube/sidekiq_quiet.sh' ]
+        env:
+          - name: POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
         envFrom:
           - configMapRef:
               name: decidim-sen-sidekiq-config

@@ -50,6 +50,11 @@ spec:
             memory: "1200Mi"
         ports:
         - containerPort: 3000
+        env:
+          - name: POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
         envFrom:
           - configMapRef:
               name: decidim-sen-app-config
