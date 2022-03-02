@@ -7,3 +7,4 @@ metadata:
 data:
   RAILS_ENV: production
   APP_NAME: "decidim_sen"
+  RAILS_LOG_TO_STDOUT: 'true'
