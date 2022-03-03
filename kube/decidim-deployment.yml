@@ -26,14 +26,6 @@ spec:
       containers:
       - name: decidim-sen-app
         image: rg.fr-par.scw.cloud/decidim-sen/decidim-sen:latest
-        livenessProbe:
-          httpGet:
-            path: /health_check
-            port: 3000
-          successThreshold: 1
-          failureThreshold: 6
-          periodSeconds: 10
-          timeoutSeconds: 30
         startupProbe:
           httpGet:
             path: /health_check
