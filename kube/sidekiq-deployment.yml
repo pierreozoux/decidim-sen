@@ -53,7 +53,7 @@ spec:
           preStop:
             exec:
               # SIGTERM triggers a quick exit; gracefully terminate instead
-              command: [ 'kube/sidekiq_quiet.sh' ]
+              command: [ './sidekiq_quiet.sh' ]
         env:
           - name: POD_IP
             valueFrom:
