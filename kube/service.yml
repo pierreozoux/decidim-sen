@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: decidim-sen-load-balancer
 spec:
-  type: LoadBalancer
   selector:
     app: decidim-sen-app
   ports:
