@@ -35,3 +35,9 @@ redis-setup:
       --set slave.persistence.path=/data \
       --set slave.persistence.size=8Gi \
       --set slave.persistence.storageClass="scw-bssd-retain"
+
+apply:
+	kubectl apply -f kube
+
+restart:
+	kubectl rollout restart deployment
