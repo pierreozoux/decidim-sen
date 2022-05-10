@@ -14,7 +14,7 @@ RUN curl https://deb.nodesource.com/setup_15.x | bash && \
      npm install -g npm@6.3.0 && \
      gem install bundler:2.2.17
 
-COPY Gemfile* .
+COPY Gemfile* ./
 RUN bundle install
 
 ADD . /app
