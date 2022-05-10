@@ -1,7 +1,15 @@
 # frozen_string_literal: true
 
-Rack::Attack.safelist_ip(ENV["POD_IP"]) if ENV["POD_IP"].present?
-Rack::Attack.enabled = false if ENV.fetch("RACK_ATTACK_DISABLED", true)
+require "rack/attack"
+
+if ENV["POD_IP"].present?
+  Rack::Attack.safelist("mark any authenticated access safe") do |request|
+    Rails.logger.info("SAFELISTED REQUEST: #{request.ip}")
+    request.env["X-HTTP_SAFELIST"] == "true" && req.ip == ENV["POD_IP"]
+  end
+end
+
+Rack::Attack.enabled = ActiveRecord::Type::Boolean.new.cast(ENV.fetch("RACK_ATTACK_DISABLED", "true"))
 
 if Rails.env.production?
   class Rack::Attack
