@@ -30,9 +30,6 @@ spec:
           httpGet:
             path: /health_check
             port: 3000
-            httpHeaders:
-            - name: "X-http-safelist"
-              value: "true"
           initialDelaySeconds: 10
           failureThreshold: 30
           periodSeconds: 10
