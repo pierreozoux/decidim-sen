@@ -4,27 +4,22 @@ ENV RAILS_ENV=production
 ENV SECRET_KEY_BASE=dummy
 
 # Install NodeJS
-RUN curl https://deb.nodesource.com/setup_15.x | bash
-RUN apt install -y nodejs
+RUN curl https://deb.nodesource.com/setup_15.x | bash && \
+     apt install -y nodejs && \
+     curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null && \
+     echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+     apt update && \
+     apt install -y yarn && \
+     apt install -y libicu-dev postgresql-client && \
+     npm install -g npm@6.3.0 && \
+     gem install bundler:2.2.17
 
-# Install Yarn
-RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null
-RUN echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt update && apt install -y yarn
+COPY Gemfile* .
+RUN bundle install
 
-# Decidim dependencies
-RUN apt install -y libicu-dev postgresql-client
-
-# Install npm
-RUN npm install -g npm@6.3.0
-# Install bundler
-RUN gem install bundler:2.2.17
-
-# Copy all decidim-app content to /app
 ADD . /app
 WORKDIR /app
 
-RUN bundle install
 RUN bundle exec rails assets:precompile
 
 # Configure endpoint.
