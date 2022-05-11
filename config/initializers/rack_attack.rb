@@ -4,7 +4,8 @@ require "rack/attack"
 
 if ENV["POD_IP"].present?
   Rack::Attack.safelist("mark any authenticated access safe") do |request|
-    request.ip == ENV["POD_IP"] && req.path.start_with?("/healthcheck")
+    Rails.logger.warn("Safelisted: #{request.ip} #{request.path}")
+    request.ip == ENV["POD_IP"] && req.path.start_with?("/health_check")
   end
 end
 
