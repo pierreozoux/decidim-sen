@@ -9,6 +9,7 @@ data:
   RAILS_SERVE_STATIC_FILES: "true"
   APP_NAME: "decidim_sen"
   WEB_CONCURRENCY: "0"
+  RACK_ATTACK_ENABLED: "true"
   CACHE_ASSETS: "true"
   RAILS_LOG_TO_STDOUT: 'true'
   NEW_RELIC_ENABLED: 'true'
