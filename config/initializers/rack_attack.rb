@@ -9,7 +9,7 @@ if ENV["POD_IP"].present?
   end
 end
 
-Rack::Attack.enabled = ActiveRecord::Type::Boolean.new.cast(ENV.fetch("RACK_ATTACK_DISABLED", "true"))
+Rack::Attack.enabled = ActiveRecord::Type::Boolean.new.cast(ENV.fetch("RACK_ATTACK_ENABLED", "true"))
 
 if Rails.env.production?
   class Rack::Attack
