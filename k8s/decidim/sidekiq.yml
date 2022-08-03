@@ -6,6 +6,7 @@ spec:
   selector:
     matchLabels:
       app: decidim-sen-sidekiq
+  replicas: 2
   template:
     metadata:
       labels:
@@ -32,7 +33,7 @@ spec:
             cpu: "100m"
             memory: "450Mi"
           limits:
-            cpu: "1200m"
+            cpu: "2"
             memory: "1200Mi"
         command: ["sidekiq", "-C", "config/sidekiq.yml"]
         ports:
@@ -41,13 +42,13 @@ spec:
           httpGet:
             path: /sidekiq_alive
             port: 7433
-          initialDelaySeconds: 60 # app specific. Time your sidekiq takes to start processing.
+          initialDelaySeconds: 30 # app specific. Time your sidekiq takes to start processing.
           timeoutSeconds: 5 # can be much less
         readinessProbe:
           httpGet:
             path: /sidekiq_alive
             port: 7433
-          initialDelaySeconds: 60 # app specific
+          initialDelaySeconds: 30 # app specific
           timeoutSeconds: 5 # can be much less
         lifecycle:
           preStop:
@@ -61,6 +62,6 @@ spec:
                 fieldPath: status.podIP
         envFrom:
           - configMapRef:
-              name: decidim-sen-sidekiq-config
+              name: decidim-sen-app-config
           - secretRef:
-              name: decidim-sidekiq-secret
+              name: decidim-sen-app-secrets
